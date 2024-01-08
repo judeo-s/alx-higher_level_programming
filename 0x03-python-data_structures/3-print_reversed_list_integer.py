@@ -12,8 +12,4 @@ def print_reversed_list_integer(my_list=[]):
     length = len(my_list)
     if length > 0:
         for i in my_list[::-1]:
-            try:
-                print("{}".format(i))
-            except ValueError:
-                print("List must only include integers!")
-                break
+            print("{:d}".format(i))
