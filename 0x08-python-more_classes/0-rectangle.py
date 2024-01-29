@@ -2,6 +2,7 @@
 
 """A module that models a Rectangle"""
 
+
 class Rectangle:
     """
     A class for Rectangles
