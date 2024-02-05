@@ -6,7 +6,7 @@ A module contains a class that models a square
 '''
 
 
-Rectangle = __import__("9-rectangle.py").Rectangle
+Rectangle = __import__("9-rectangle").Rectangle
 
 
 class Square(Rectangle):
