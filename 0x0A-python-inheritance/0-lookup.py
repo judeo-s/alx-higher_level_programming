@@ -1,5 +1,10 @@
 #!/usr/bin/python3
 
+'''
+A module with a function that returns the list of attributes
+and methods of an object
+'''
+
 
 def lookup(obj):
     '''
@@ -11,4 +16,4 @@ def lookup(obj):
     Returns:
         list
     '''
-    return sorted(obj().__dir__())
+    return dir(obj)
