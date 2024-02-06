@@ -20,7 +20,14 @@ class Student:
         self.age = age
 
     def to_json(self, attr):
-        """Returns the dictionary representation of the Student object."""
+        """
+        Returns the dictionary representation of the Student object.
+
+        Args:
+            attr: list
+        Returns:
+            JSON
+        """
         if attr is not None and isinstance(attr, list):
             return (
                 {
