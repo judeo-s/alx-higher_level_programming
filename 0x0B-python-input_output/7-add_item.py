@@ -13,21 +13,16 @@ def add_items():
     A function that adds all arguments to a Python list, and then saves
     them to a file
     '''
-    temp = []
-    items = None
-    temp = temp + sys.argv[1:]
+    items = []
     try:
-        items = load_from_json_file("add_items.json")
+        items = load_from_json_file("add_item.json")
     except Exception:
         pass
 
-    if type(items) in [list]:
-        for i in temp:
-            items.append(i)
-    else:
-        items = []
+    for i in sys.argv[1:]:
+        items.append(i)
 
-    save_to_json_file(items, "add_items.json")
+    save_to_json_file(items, "add_item.json")
 
 
 if __name__ == "__main__":
