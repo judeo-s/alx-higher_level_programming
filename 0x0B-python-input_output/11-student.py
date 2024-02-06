@@ -36,3 +36,14 @@ class Student:
                 }
             )
         return self.__dict__
+
+    def reload_from_json(self, json):
+        """
+        Replaces all attributes of a `Student` instance with contents in a
+        JSON file.
+
+        Args:
+            json: dict
+        """
+        for key, value in json.items():
+            self.__dict__[key] = value
