@@ -15,7 +15,7 @@ def add_items():
     '''
     temp = []
     items = None
-    temp = temp + sys.argv
+    temp = temp + sys.argv[1:]
     try:
         items = load_from_json_file("add_items.json")
     except Exception:
