@@ -60,8 +60,8 @@ class Square(Rectangle):
             IndexError
             KeyError
         '''
-        if isinstance(*args, (list, tuple)):
-            if len(args) > 0 and len(args) <= 4:
+        if args is not None and len(args) > 0:
+            if len(args) <= 4:
                 try:
                     self.id = args[0]
                     self.size = args[1]

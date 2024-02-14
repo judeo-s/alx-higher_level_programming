@@ -42,15 +42,14 @@ class TestDocumentation(unittest.TestCase):
 
 class TestBase(unittest.TestCase):
     '''A class dedicated to testing the Base class'''
+    b1 = Base()
+    b2 = Base()
+    b3 = Base(12)
+    b4 = Base()
+    b5 = Base(42)
 
     def test_initialization(self):
         '''Tests the initialization of the Base class'''
-        self.b1 = Base()
-        self.b2 = Base()
-        self.b3 = Base(12)
-        self.b4 = Base()
-        self.b5 = Base(42)
-
         self.assertEquals(self.b1.id, 1)
         self.assertEquals(self.b2.id, 2)
         self.assertEquals(self.b4.id, 3)

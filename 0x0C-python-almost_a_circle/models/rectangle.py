@@ -51,7 +51,7 @@ class Rectangle(Base):
         Args:
             width: int
         '''
-        if isinstance(width, (int, float)):
+        if isinstance(width, (int)):
             if width <= 0:
                 raise ValueError("width must be > 0")
             self.__width = width
@@ -71,7 +71,7 @@ class Rectangle(Base):
         Args:
             height: int
         '''
-        if isinstance(height, (int, float)):
+        if isinstance(height, (int)):
             if height <= 0:
                 raise ValueError("height must be > 0")
             self.__height = height
@@ -131,10 +131,10 @@ class Rectangle(Base):
         '''
         A function that prints a design representation of a Rectangle
         '''
+        print('\n' * self.y, end='')
         for i in range(self.height):
+            print(' ' * self.x, end='')
             for j in range(self.width):
-                for k in range(self.x):
-                    print(' ', end='')
                 print("#", end='')
             print()
 
@@ -149,10 +149,10 @@ class Rectangle(Base):
             IndexError
             KeyError
         '''
-        if isinstance(args, (list, tuple)):
-            if len(args) > 0 and len(args) <= 5:
+        if args is not None and len(args) > 0:
+            if len(args) <= 5:
                 try:
-                    super().id = args[0]
+                    self.id = args[0]
                     self.width = args[1]
                     self.height = args[2]
                     self.x = args[3]

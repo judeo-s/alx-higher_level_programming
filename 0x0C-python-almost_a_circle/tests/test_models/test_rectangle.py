@@ -283,7 +283,7 @@ class TestRectangle(unittest.TestCase):
     def test_update_too_many_pos_args(self) -> None:
         """Tests for many positional arguments passed to the update method."""
         with self.assertRaisesRegex(
-            ValueError, "excess positional arguments than expected"
+            ValueError, "number of arguments exceed expected number"
         ):
             self.r1.update(*list(range(10)))
 
@@ -533,7 +533,6 @@ class TestSaveToFileOnRectangle(unittest.TestCase):
         is None.
         """
         Rectangle.save_to_file(None)
-
         try:
             with open("Rectangle.json", "r") as json_file:
                 self.assertEqual(json_file.read(), "[]")
@@ -711,7 +710,7 @@ class TestCreateOnRectangle(unittest.TestCase):
         r1 = Rectangle.create(
             **{"y": 5, "x": 10, "width": 5, "height": 10, "id": 12}
         )
-
+        print(str(r1.to_dictionary))
         expected_result = {"x": 10, "y": 5, "id": 12, "height": 10, "width": 5}
         self.assertEqual(r1.to_dictionary(), expected_result)
 

@@ -88,7 +88,7 @@ class TestSquare(unittest.TestCase):
     def test_update_too_many_pos_args(self) -> None:
         """Tests for many positional arguments passed to the update method."""
         with self.assertRaisesRegex(
-            ValueError, "excess positional arguments than expected"
+            ValueError, "number of arguments exceed expected number"
         ):
             self.sq2.update(*list(range(10)))
 

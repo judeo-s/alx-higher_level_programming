@@ -43,12 +43,7 @@ class Base:
         if isinstance(list_dictionaries, (list))\
                 and len(list_dictionaries) >= 0:
             if all(isinstance(obj, dict) for obj in list_dictionaries):
-                try:
-                    return json.dumps(list_dictionaries)
-                except json.JSONDecodeError:
-                    raise json.JSONDecodeError(
-                            "error converting to json to string"
-                            )
+                return json.dumps(list_dictionaries)
             else:
                 raise TypeError(
                         'argument should only contain list of dictionaries'
@@ -72,15 +67,15 @@ class Base:
         Raises:
             json.JSONDecodeError
         '''
-        if isinstance(json_string, (str)) and len(json_string) > 0:
-            try:
-                return json.loads(json_string)
-            except json.JSONDecodeError:
-                raise json.JSONDecodeError(
-                        "error converting to string to json"
-                        )
-        else:
+        if json_string is None:
             return []
+        if isinstance(json_string, (str)):
+            if len(json_string) == 0:
+                return []
+            else:
+                return json.loads(json_string)
+        else:
+            raise TypeError("must be a string")
 
     @classmethod
     def save_to_file(cls, list_objs):
@@ -94,18 +89,25 @@ class Base:
         Raises:
             ValueError
         '''
-        dict_list = [obj.to_dictionary() for obj in list_objs]
+        dict_list = []
 
-        if len(dict_list) == 0:
+        if list_objs is None:
+            with open(cls.__name__ + ".json", 'w') as file:
+                file.write(cls.to_json_string(dict_list))
+            return
+        if len(list_objs) == 0:
             with open(cls.__name__ + ".json", 'w') as file:
                 file.write(cls.to_json_string(dict_list))
             return
 
         if all(isinstance(obj, cls) for obj in list_objs):
+            dict_list = [obj.to_dictionary() for obj in list_objs]
             with open(cls.__name__ + ".json", 'w') as file:
                 file.write(cls.to_json_string(dict_list))
         else:
-            raise ValueError("list does not contain objects of the same class")
+            raise AttributeError(
+                    "list does not contain objects of the same class"
+                    )
 
     @classmethod
     def create(cls, **dictionary):
@@ -118,9 +120,9 @@ class Base:
         '''
         dummy = None
         if cls.__name__ == 'Rectangle':
-            dummy = cls(0, 0)
+            dummy = cls(4, 8)
         if cls.__name__ == 'Square':
-            dummy = cls(0)
+            dummy = cls(8)
         dummy.update(**dictionary)
         return dummy
 
