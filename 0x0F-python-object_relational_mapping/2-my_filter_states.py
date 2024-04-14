@@ -13,17 +13,13 @@ if __name__ == "__main__":
     db = MySQLdb.connect(
             host='localhost', user=sys.argv[1], passwd=sys.argv[2],
             db=sys.argv[3], port=3306)
+
     cursor = db.cursor()
     query = f"SELECT * FROM states \
             WHERE name LIKE BINARY '{sys.argv[4]}' \
             ORDER BY states.id ASC"
-    try:
-        cursor.execute(query)
-        rows = cursor.fetchall()
-    except MySQLdb.Error as e:
-        try:
-            print(f"MySQL Error [e.args[0]]: {e.args[1]}")
-        except IndexError:
-            print(f"MySQL Error: {str(e)}")
+    cursor.execute(query)
+    rows = cursor.fetchall()
+
     for row in rows:
         print(row)
