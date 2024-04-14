@@ -15,7 +15,9 @@ if __name__ == "__main__":
             )
     cursor = db.cursor()
     try:
-        cursor.execute("SELECT * FROM states WHERE id > 3")
+        cursor.execute("SELECT * FROM states \
+                WHERE name LIKE BINARY 'N%' \
+                ORDER BY states.id ASC")
         rows = cursor.fetchall()
     except MySQLdb.Error as e:
         try:
