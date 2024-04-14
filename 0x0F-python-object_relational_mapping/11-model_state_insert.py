@@ -15,10 +15,9 @@ if __name__ == "__main__":
 
     session = Session()
     session.add(State(name=sys.argv[4]))
-    session.commit()
 
     instance = session.query(State).where(State.name == sys.argv[4]).first()
-
+    session.commit()
     if instance:
         print('{0}'.format(instance.id))
     else:
