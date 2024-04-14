@@ -1,9 +1,11 @@
 #!/usr/bin/python3
+"""
+A module to define the Base and State class using sqlalchemy
+"""
 from sqlalchemy import Integer, Column, String, Sequence
 from sqlalchemy.ext.declarative import declarative_base
-import sqlalchemy
 
-Base = sqlalchemy.orm.declarative_base()
+Base = declarative_base()
 
 
 class State(Base):
