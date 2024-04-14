@@ -14,11 +14,7 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
 
     session = Session()
-    session.add(State(name=sys.argv[4]))
-
-    instance = session.query(State).where(State.name == sys.argv[4]).first()
+    state = State(name=sys.argv[4])
+    session.add(state)
     session.commit()
-    if instance:
-        print('{0}'.format(instance.id))
-    else:
-        print('Not found')
+    print('{0}'.format(state.id))
