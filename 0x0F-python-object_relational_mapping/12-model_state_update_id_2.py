@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+r!/usr/bin/python3
 """
 A script to fetch data in the states table using sqlalchemy
 """
@@ -14,7 +14,7 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
 
     session = Session()
-    state = State(name="Louisiana")
-    session.add(state)
+    state = session.query(State).filter(State.id == '2').first()
+    state.name = "New Mexico"
     session.commit()
     print('{0}'.format(state.id))
