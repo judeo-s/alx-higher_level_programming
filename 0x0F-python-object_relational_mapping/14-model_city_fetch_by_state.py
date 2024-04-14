@@ -16,8 +16,10 @@ if __name__ == "__main__":
 
     session = Session()
 
-    for instance in session.query(State).filter(State.name.contains('a')):
-        session.delete(instance)
+    query = session.query(City, State).join(State)
+
+    for _c, _s in query.all():
+        print("{}: ({:d}) {}".format(_s.name, _c.id, _c.name))
 
     session.commit()
     session.close()
