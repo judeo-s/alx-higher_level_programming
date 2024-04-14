@@ -6,7 +6,8 @@ import sys
 import MySQLdb
 
 db = MySQLdb.connect(
-        host='localhost', user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3]
+        host='localhost', user=sys.argv[1], port=3306, passwd=sys.argv[2],
+        db=sys.argv[3]
         )
 cursor = db.cursor()
 try:
@@ -18,6 +19,6 @@ except MySQLdb.Error as e:
     except IndexError:
         print(f"MySQL Error: {str(e)}")
 for row in rows:
-    print(f"({row[0]}, '{row[1]}')")
+    print(row)
 cursor.close()
 db.close()
