@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-A module to select data fro the states table using the where clause
+A module to select data fro the cities table using the where clause
 """
 import sys
 import MySQLdb
