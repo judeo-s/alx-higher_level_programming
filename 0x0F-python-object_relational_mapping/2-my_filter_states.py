@@ -16,7 +16,8 @@ if __name__ == "__main__":
             db=sys.argv[3], port=3306
             )
     cursor = db.cursor()
-    query = f"SELECT * FROM states WHERE name='{sys.argv[4]}' \
+    query = f"SELECT * FROM states \
+            WHERE name LIKE BINARY '{sys.argv[4]}' \
             ORDER BY states.id ASC"
     try:
         cursor.execute(query)
