@@ -27,5 +27,3 @@ if __name__ == "__main__":
             print(f"MySQL Error: {str(e)}")
     for row in rows:
         print(row)
-    cursor.close()
-    db.close()
