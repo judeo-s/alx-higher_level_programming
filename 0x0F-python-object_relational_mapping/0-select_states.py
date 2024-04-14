@@ -1,24 +1,21 @@
 #!/usr/bin/python3
 """
-A module to select data from the states table
+This script lists all states from the database
 """
-import sys
-import MySQLdb
 
-db = MySQLdb.connect(
-        host='localhost', user=sys.argv[1], port=3306, passwd=sys.argv[2],
-        db=sys.argv[3]
-        )
-cursor = db.cursor()
-try:
-    cursor.execute("SELECT * FROM states")
-    rows = cursor.fetchall()
-except MySQLdb.Error as e:
-    try:
-        print(f"MySQL Error [e.args[0]]: {e.args[1]}")
-    except IndexError:
-        print(f"MySQL Error: {str(e)}")
-for row in rows:
-    print(row)
-cursor.close()
-db.close()
+import MySQLdb
+from sys import argv
+
+if __name__ == '__main__':
+    """
+    Access to the database and get the states
+    """
+    db = MySQLdb.connect(host="localhost", user=argv[1], port=3306,
+                         passwd=argv[2], db=argv[3])
+
+    cur = db.cursor()
+    cur.execute("SELECT * FROM states")
+    rows = cur.fetchall()
+
+    for row in rows:
+        print(row)
