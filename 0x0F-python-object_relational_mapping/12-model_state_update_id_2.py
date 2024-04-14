@@ -1,4 +1,4 @@
-r!/usr/bin/python3
+#!/usr/bin/python3
 """
 A script to fetch data in the states table using sqlalchemy
 """
